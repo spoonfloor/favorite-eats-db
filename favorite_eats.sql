@@ -73,6 +73,13 @@ CREATE TABLE IF NOT EXISTS "recipes" (
 	"servings_max"	INTEGER,
 	PRIMARY KEY("ID" AUTOINCREMENT)
 );
+CREATE TABLE IF NOT EXISTS "section_contexts" (
+	"id"	INTEGER,
+	"section_id"	INTEGER NOT NULL,
+	"context"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("section_id") REFERENCES "recipe_sections"("ID")
+);
 CREATE TABLE IF NOT EXISTS "store_locations" (
 	"ID"	INTEGER,
 	"store_id"	INTEGER NOT NULL,
@@ -682,17 +689,17 @@ INSERT INTO "recipe_ingredient_map" VALUES (15,2,139,2,'2','teaspoons','dried ba
 INSERT INTO "recipe_ingredient_map" VALUES (16,2,140,2,'2','teaspoons','dried oregano',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (17,2,138,2,'1','teaspoon','garlic powder',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (18,2,9,2,'0.5','cup','water',0,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (19,2,93,3,'4.5','cups','Rao’s marinara sauce',0,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (20,2,141,3,'18',NULL,'no-boil lasagna noodles',0,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (21,2,142,3,NULL,NULL,'vegan parmesan (suggested garnish)',1,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (22,2,114,3,NULL,NULL,'nutritional yeast (alternative garnish)',1,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (23,2,143,3,NULL,NULL,'fresh basil, cut in ribbons (garnish)',1,NULL);
+INSERT INTO "recipe_ingredient_map" VALUES (19,2,93,NULL,'4.5','cups','Rao’s marinara sauce',0,NULL);
+INSERT INTO "recipe_ingredient_map" VALUES (20,2,141,NULL,'18',NULL,'no-boil lasagna noodles',0,NULL);
+INSERT INTO "recipe_ingredient_map" VALUES (21,2,142,NULL,NULL,NULL,'vegan parmesan (suggested garnish)',1,NULL);
+INSERT INTO "recipe_ingredient_map" VALUES (22,2,114,NULL,NULL,NULL,'nutritional yeast (alternative garnish)',1,NULL);
+INSERT INTO "recipe_ingredient_map" VALUES (23,2,143,NULL,NULL,NULL,'fresh basil, cut in ribbons (garnish)',1,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (24,3,147,NULL,'0.75','cup','pine nuts',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (25,3,114,NULL,'0.25','cup','nutritional yeast',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (27,3,5,NULL,'0.5','teaspoon','salt',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (28,3,138,NULL,'0.5','teaspoon','garlic powder',0,NULL);
-INSERT INTO "recipe_ingredient_map" VALUES (29,2,142,3,NULL,NULL,'vegan parmesan (subrecipe)',1,3);
-INSERT INTO "recipe_ingredient_map" VALUES (30,2,142,3,NULL,NULL,'vegan parmesan (subrecipe)',1,3);
+INSERT INTO "recipe_ingredient_map" VALUES (29,2,142,NULL,NULL,NULL,'vegan parmesan (subrecipe)',1,3);
+INSERT INTO "recipe_ingredient_map" VALUES (30,2,142,NULL,NULL,NULL,'vegan parmesan (subrecipe)',1,3);
 INSERT INTO "recipe_ingredient_map" VALUES (31,4,148,NULL,'400','g','',0,NULL);
 INSERT INTO "recipe_ingredient_map" VALUES (32,4,9,NULL,'480','g','',0,NULL);
 INSERT INTO "recipe_ingredient_substitutes" VALUES (1,31,'400','g',149,'');
@@ -729,6 +736,11 @@ INSERT INTO "recipes" VALUES (1,'pancakes',8,4,12);
 INSERT INTO "recipes" VALUES (2,'lasagna',6,6,6);
 INSERT INTO "recipes" VALUES (3,'vegan parmesan',12,12,12);
 INSERT INTO "recipes" VALUES (4,'Rice',4,4,4);
+INSERT INTO "section_contexts" VALUES (1,1,'ingredients');
+INSERT INTO "section_contexts" VALUES (2,1,'instructions');
+INSERT INTO "section_contexts" VALUES (3,2,'ingredients');
+INSERT INTO "section_contexts" VALUES (4,2,'instructions');
+INSERT INTO "section_contexts" VALUES (5,3,'instructions');
 INSERT INTO "store_locations" VALUES (1,1,'produce',NULL,1);
 INSERT INTO "store_locations" VALUES (2,1,'health and beauty',NULL,2);
 INSERT INTO "store_locations" VALUES (3,1,'frozen food',NULL,3);
